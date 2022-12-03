@@ -1,6 +1,7 @@
 # ignore db
 db.sqlite3
 db
+mongodb
 # logs
 log/*
 logs/*
