@@ -14,7 +14,9 @@ import os
 from pathlib import Path
 
 import dj_database_url
-import mongoengine
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -89,12 +91,16 @@ WSGI_APPLICATION = "student_management_system.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+USER_NAME = os.environ.get("MONGO_INITDB_ROOT_USERNAME")
+USER_PASSWORD = os.environ.get("MONGO_INITDB_ROOT_PASSWORD")
+HOST = os.environ.get("HOST")  # 127.0.0.1
+PORT = os.environ.get("PORT") 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'django',
@@ -103,10 +109,13 @@ DATABASES = {
     #     'HOST': '127.0.0.1',
     #     'PORT': '3307'
     # }
-    #     "default": {
-    #       "ENGINE": "djongo",
-    #       "NAME": "your-db-name",
-    #    }
+    "default": {
+        "ENGINE": "djongo",
+        "NAME": "test",
+        "CLIENT": {
+            "host": f"mongodb://{USER_NAME}:{USER_PASSWORD}@{HOST}:{PORT}/?authMechanism=DEFAULT"
+        },
+    }
 }
 
 
