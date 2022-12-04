@@ -44,7 +44,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     {% url 'admin_notify_staff' as admin_notify_staff %}
                     <a href="{{admin_notify_staff}}" class="nav-link {% if admin_notify_staff == request.path %} active {% endif %}">
                         <i class="nav-icon fas fa-th"></i>
@@ -63,8 +63,8 @@
 
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     {% url 'add_staff' as add_staff %}
                     <a href="{{add_staff}}" class="nav-link {% if add_staff == request.path %} active {% endif %}">
                         <i class="nav-icon fas fa-th"></i>
@@ -86,7 +86,7 @@
 
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     {% url 'add_student' as add_student%}
                     <a href="{{add_student}}" class="nav-link  {% if add_student == request.path %} active {% endif %}">
@@ -110,7 +110,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     {% url 'add_course' as add_course %}
                     <a href="{{add_course}}" class="nav-link  {% if add_course == request.path %} active {% endif %}">
                         <i class="nav-icon fas fa-th"></i>
@@ -119,8 +119,8 @@
 
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     {% url 'manage_course' as manage_course %}
                     {% url 'edit_course' course_id as edit_course %}
                     <a href="{{manage_course}}"
@@ -131,8 +131,8 @@
 
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     {% url 'add_subject' as add_subject %}
                     <a href="{{add_subject}}" class="nav-link  {% if add_subject == request.path %} active {% endif %}">
                         <i class="nav-icon fas fa-th"></i>
@@ -141,8 +141,8 @@
 
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     {% url 'manage_subject' as manage_subject %}
                     {% url 'edit_subject' subject_id as edit_subject %}
                     <a href="{{manage_subject}}"
@@ -153,8 +153,8 @@
 
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     {% url 'add_session' as add_session %}
                     <a href="{{add_session}}" class="nav-link  {% if add_session == request.path %} active {% endif %}">
                         <i class="nav-icon fas fa-th"></i>
@@ -175,8 +175,8 @@
 
                     </p>
                 </a>
-        </li>
-                <li class="nav-item">
+        </li> -->
+                <!-- <li class="nav-item">
                     {% url 'admin_view_attendance' as admin_view_attendance %}
 
                     <li class="nav-item">
@@ -230,7 +230,7 @@
                             
                         </p>
                     </a>
-                </li>
+                </li> -->
                 
 {% elif request.user.user_type == '2' %}
     <!-- Brand Logo -->
