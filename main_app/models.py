@@ -38,16 +38,33 @@ class Session(models.Model):
 class CustomUser(AbstractUser):
     USER_TYPE = ((1, "HOD"), (2, "Staff"), (3, "Student"))
     GENDER = [("M", "Male"), ("F", "Female")]
+    BELT = [
+        ("W", "White"),
+        ("Y", "Yellow"),
+        ("G", "Green"),
+        ("B", "Blue"),
+        ("R", "Red"),
+        ("BK", "Black")  
+    ]
 
     username = None  # Removed username, using email instead
     email = models.EmailField(unique=True)
     user_type = models.CharField(default=1, choices=USER_TYPE, max_length=1)
     gender = models.CharField(max_length=1, choices=GENDER)
-    profile_pic = models.ImageField()
+    profile_pic = models.ImageField(blank=True)
     address = models.TextField()
     fcm_token = models.TextField(default="")  # For firebase notifications
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # fields for club
+    organization_code = models.TextField(default="DNAN") # DNAN is Danang City
+    coach_code = models.TextField(default="") # coach id, optionally
+    judge_code = models.TextField(default="") # judge code, optionally
+    club_code = models.TextField(default="005500") # club code, 005500
+    belt = models.CharField(max_length=2, choices=BELT) # color of belt white, yellow, green, blue, red, black
+    dan = models.IntegerField() # number of dans, (ex, 1, 2)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
