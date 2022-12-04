@@ -71,8 +71,8 @@ class Course(models.Model):
 
 class Student(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.DO_NOTHING, null=True, blank=True)
-    session = models.ForeignKey(Session, on_delete=models.DO_NOTHING, null=True, blank=True)
+    # course = models.ForeignKey(Course, on_delete=models.DO_NOTHING, null=True, blank=True)
+    # session = models.ForeignKey(Session, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
         return self.admin.last_name + ", " + self.admin.first_name
