@@ -93,10 +93,21 @@ def add_student(request):
             password = student_form.cleaned_data.get("password")
             course = student_form.cleaned_data.get("course")
             session = student_form.cleaned_data.get("session")
-            passport = request.FILES["profile_pic"]
-            fs = FileSystemStorage()
-            filename = fs.save(passport.name, passport)
-            passport_url = fs.url(filename)
+            # get information of club
+            organization_code = student_form.cleaned_data.get("organization_code")
+            club_code = student_form.cleaned_data.get("club_code")
+            coach_code = student_form.cleaned_data.get("coach_code")
+            judge_code = student_form.cleaned_data.get("judge_code")
+            belt = student_form.cleaned_data.get("belt")
+            dan = student_form.cleaned_data.get("dan")
+            #end
+            if request.FILES:
+                passport = request.FILES["profile_pic"]
+                fs = FileSystemStorage()
+                filename = fs.save(passport.name, passport)
+                passport_url = fs.url(filename)
+            else:
+                passport_url = None
             try:
                 user = CustomUser.objects.create_user(
                     email=email,
@@ -108,6 +119,14 @@ def add_student(request):
                 )
                 user.gender = gender
                 user.address = address
+                # club information
+                user.belt = belt
+                user.dan = dan
+                user.organization_code = organization_code
+                user.club_code = club_code
+                user.coach_code = coach_code
+                user.judge_code = judge_code
+                #end
                 user.student.session = session
                 user.student.course = course
                 user.save()
@@ -249,6 +268,14 @@ def edit_student(request, student_id):
             course = form.cleaned_data.get("course")
             session = form.cleaned_data.get("session")
             passport = request.FILES.get("profile_pic") or None
+            # Club information
+            # get information of club
+            organization_code = form.cleaned_data.get("organization_code")
+            club_code = form.cleaned_data.get("club_code")
+            coach_code = form.cleaned_data.get("coach_code")
+            judge_code = form.cleaned_data.get("judge_code")
+            belt = form.cleaned_data.get("belt")
+            dan = form.cleaned_data.get("dan")
             try:
                 user = CustomUser.objects.get(id=student.admin.id)
                 if passport != None:
@@ -266,6 +293,13 @@ def edit_student(request, student_id):
                 user.gender = gender
                 user.address = address
                 student.course = course
+                # information of club
+                user.dan = dan
+                user.belt = belt
+                user.organization_code = organization_code
+                user.club_code = club_code
+                user.coach_code = coach_code
+                user.judge_code = judge_code
                 user.save()
                 student.save()
                 messages.success(request, "Successfully Updated")
