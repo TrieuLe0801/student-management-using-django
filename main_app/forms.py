@@ -22,7 +22,22 @@ class CustomUserForm(FormSettings):
     widget = {
         "password": forms.PasswordInput(),
     }
-    profile_pic = forms.ImageField()
+    profile_pic = forms.ImageField(required=False)
+
+    # Information about club
+    organization_code = forms.CharField(required=True) # DNAN is Danang City
+    coach_code = forms.CharField(required=False) # coach id, optionally
+    judge_code = forms.CharField(required=False) # judge code, optionally
+    club_code = forms.CharField(required=True) # club code, 005500
+    belt = forms.ChoiceField(choices=[
+        ("W", "White"),
+        ("Y", "Yellow"),
+        ("G", "Green"),
+        ("B", "Blue"),
+        ("R", "Red"),
+        ("BK", "Black")  
+    ]) # color of belt white, yellow, green, blue, red, black
+    dan = forms.IntegerField(required=True) # number of dans, (ex, 1, 2)
 
     def __init__(self, *args, **kwargs):
         super(CustomUserForm, self).__init__(*args, **kwargs)
@@ -59,6 +74,14 @@ class CustomUserForm(FormSettings):
             "gender",
             "password",
             "profile_pic",
+            #club fields
+            "organization_code",
+            "coach_code",
+            "judge_code",
+            "club_code",
+            "belt",
+            "dan",
+            # end
             "address",
         ]
 
